@@ -1,0 +1,134 @@
+{
+	"settings": {
+		"app" : {
+			"name" : "NEON_SAMURAI EDITOR",
+			"exe_name" : "neosam_ed",
+			"gopkg_name" : "neosam_ed",
+			"description" : "A Go (cli) application for configuring the NEON_SAMURAI firmware.",
+			"version" : "0.0.1",
+			"build_dir" : "build",
+		},
+
+		"files.associations": {
+			"*.go": "go"
+		},
+
+
+	},
+
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.go"
+		]
+	},
+
+	"tasks": {
+		"version": "2.0.0",
+		"inputs": [
+			{
+				"id": "build_mode",
+				"description": "Configure the Go build mode",
+
+				"options": [
+					// main packages compiled into executable, non-main compiled into .a files
+					"default",
+
+					// everything built into an executable, non-main packages ignored
+					"exe",
+
+					// combine all non-main packages into a single shared library (requires -linkshared build option)
+					// "shared",
+
+					// build the main package, and all imported packages into a c shared library, exported symbols must be defined
+					// in the code using the cgo //export comment
+					// "c-shared"
+				],
+				"default": "default",
+				"type": "pickString",
+			},
+			{
+				"id" : "target_arch",
+				"description" : "The target architecture to build for",
+				"options" : [
+					// "arm",
+					"amd64",
+					// "wasm",
+				],
+				"default": "amd64",
+				"type": "pickString",
+			},
+			{
+				"id": "target_os",
+				"description": "The target operating system to build for",
+				"options": [
+					"linux",
+					"windows",
+					"darwin",
+					// "freebsd",
+					// "openbsd",
+					// "netbsd",
+					// "plan9",
+				],
+				"default": "linux",
+				"type": "pickString"
+			}
+		],
+
+		"tasks": [
+			{
+				"type": "go",
+				"label": "build (debug)",
+				"detail": "Builds the application",
+				"command": "build",
+
+				"options": {
+					"env": {
+						"GOARCH": "${input:target_arch}",
+						"GOOS": "${input:target_os}"
+					}
+				},
+
+				"args": [
+					"-C",
+					"${workspaceFolder}",
+					"-o",
+					"${config:app.build_dir}/dev/${config:app.exe_name}",
+					// "-race", // check for race conditions
+					// "-msan", // enable interoperation with memory sanitizer
+					// "-asan", // enable interoperation with address sanitizer
+					// "-cover", // enable code coverage instrumentation
+					"-buildvcs=true",// embed binary with version control information
+				],
+
+				"problemMatcher": [
+					"$go"
+				],
+
+				"group": {
+					"kind": "build",
+					"isDefault": true
+				},
+			}
+		]
+	},
+
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Debug application",
+				"type": "go",
+				"request": "launch",
+				"mode": "debug",
+				"program": "${config:app.build_dir}/${input:target_arch}/${input:target_os}/${config:app.exe_name}",
+			}
+		],
+		"compounds": []
+	}
+}

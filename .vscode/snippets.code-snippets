@@ -1,0 +1,22 @@
+{
+	"Go template file" : {
+	"scope": "go",
+	"description": "Automatically generate a go file.",
+	"isFileTemplate": true,
+	"prefix": ["gofile"],
+	"body": [
+		"/******************************************************************************",
+		" * Date   : $CURRENT_MONTH_NAME $CURRENT_YEAR",
+		" * Brief  : ${1:Add a description of the file here}",
+		" *",
+		" * Copyright (c) $CURRENT_YEAR by Nicolaus Starke | All rights reserved.",
+		" * SPDX-License-Identifier: MIT",
+		" *****************************************************************************/",
+		"","package ${2:neon_samurai}","",
+		"/* ------------------------------- Types ----------------------------------- */",
+		"/* ------------------------------- Constants ------------------------------- */",
+		"/* ------------------------------- Variables ------------------------------- */",
+		"/* ------------------------------- Functions ------------------------------- */",
+	],
+},
+}
