@@ -6,7 +6,7 @@
  * SPDX-License-Identifier: MIT
  *****************************************************************************/
 
-package neon_samurai
+package objects
 
 import (
 	"bytes"
@@ -15,20 +15,6 @@ import (
 )
 
 /* ------------------------------- Types ----------------------------------- */
-
-// type encoderQuad struct {
-// 	accelMode uint
-// 	velocity int32
-// 	direction int
-// }
-
-// type encoderVmap struct {
-// 	currentPosition uint16
-// 	currentValue int32
-
-// 	positionRange[2] uint16
-// 	valueRange[2] uint16
-// }
 
 type objectID uint
 

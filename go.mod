@@ -1,4 +1,4 @@
-module neosam_ed
+module neon_samurai
 
 go 1.22.3
 
