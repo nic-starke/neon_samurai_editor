@@ -118,17 +118,18 @@
 		]
 	},
 
-	"launch": {
-		"version": "0.2.0",
-		"configurations": [
-			{
-				"name": "Debug application",
-				"type": "go",
-				"request": "launch",
-				"mode": "debug",
-				"program": "${config:app.build_dir}/${input:target_arch}/${input:target_os}/${config:app.exe_name}",
-			}
-		],
-		"compounds": []
-	}
+	// "launch": {
+	// 	"version": "0.2.0",
+	// 	"configurations": [
+	// 		{
+	// 			"name": "Debug application",
+
+	// 			"type": "go",
+	// 			"request": "launch",
+	// 			"mode": "debug",
+	// 			"program": "${config:app.build_dir}/${input:target_arch}/${input:target_os}/${config:app.exe_name}",
+	// 		}
+	// 	],
+	// 	"compounds": []
+	// }
 }
